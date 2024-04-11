@@ -1,0 +1,98 @@
+<mxfile host="Electron" modified="2024-04-11T14:43:48.178Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="xr6UL8H05N0hPNhcSas1" version="23.0.2" type="device">
+  <diagram name="Page-1" id="glafPuaFXjrdn2qMQoBS">
+    <mxGraphModel dx="1354" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NZlJo-v-FminwBwXvePm-8" value="Home" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-27" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-19" target="NZlJo-v-FminwBwXvePm-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-28" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-19" target="NZlJo-v-FminwBwXvePm-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-19" value="Authentication" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="240" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-20" value="Login" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-21" value="Sign up" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="400" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-50" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-38" target="NZlJo-v-FminwBwXvePm-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-53" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-38" target="NZlJo-v-FminwBwXvePm-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-55" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-38" target="NZlJo-v-FminwBwXvePm-54">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="520" />
+              <mxPoint x="600" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-38" value="Profile" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="240" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-62" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-40" target="NZlJo-v-FminwBwXvePm-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-40" value="Projects" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="760" y="400" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-8" target="NZlJo-v-FminwBwXvePm-45">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="120" as="sourcePoint" />
+            <mxPoint x="720" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-47" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;strokeWidth=1;targetPerimeterSpacing=0;sourcePerimeterSpacing=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-45" target="NZlJo-v-FminwBwXvePm-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-48" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=dash;startFill=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-45" target="NZlJo-v-FminwBwXvePm-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-45" value="signed in?" style="rhombus;rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="160" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-52" value="Settings" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="520" y="400" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-54" value="About" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="520" y="560" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-59" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-56" target="NZlJo-v-FminwBwXvePm-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-61" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-56" target="NZlJo-v-FminwBwXvePm-60">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-56" value="Tasks" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="880" y="560" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-58" value="Steps" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="720" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-65" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-60" target="NZlJo-v-FminwBwXvePm-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-60" value="Subtasks" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontFamily=Segoe UI;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="760" y="720" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="NZlJo-v-FminwBwXvePm-66" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;fontStyle=0;" edge="1" parent="1" source="NZlJo-v-FminwBwXvePm-60" target="NZlJo-v-FminwBwXvePm-60">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="740" />
+              <mxPoint x="720" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

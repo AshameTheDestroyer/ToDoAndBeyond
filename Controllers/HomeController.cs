@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 
-// using ToDoAndBeyond.Interfaces;
-
 namespace ToDoAndBeyond.Controllers;
 
 public class HomeController(ILogger<HomeController> logger) : Controller

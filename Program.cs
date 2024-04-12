@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-// using ToDoAndBeyond.Interfaces;
+using ToDoAndBeyond.Interfaces;
 using ToDoAndBeyond.Models;
-
-// using ToDoAndBeyond.Services;
+using ToDoAndBeyond.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,9 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 
 builder.Services.AddControllersWithViews();
 
-// builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IToDoProjectRepository, ToDoProjectRepository>();
+builder.Services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
+builder.Services.AddScoped<IToDoStepRepository, ToDoStepRepository>();
 
 var app = builder.Build();
 

@@ -9,6 +9,8 @@ public class ToDoTask
     public int ID { get; set; }
     public int ProjectID { get; set; }
     public int? TaskID { get; set; }
+    public required ToDoProject Project { get; set; }
+    public ToDoTask? ParentTask { get; set; }
 
     [StringLength(32)]
     public string Name { get; set; } = string.Empty;

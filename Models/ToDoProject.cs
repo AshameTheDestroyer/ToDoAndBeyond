@@ -6,14 +6,15 @@ public class ToDoProject
 {
     [Key]
     public int ID { get; set; }
-    public int UserID { get; set; }
+
+    // public required int UserID { get; set; }
 
     [StringLength(32)]
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
     [StringLength(4)]
     public string? Icon { get; set; }
     public string? Text { get; set; }
-    public DateTime CreationTime { get; set; }
-    public DateTime UpdateTime { get; set; }
+    public DateTime CreationTime { get; set; } = DateTime.Now;
+    public DateTime UpdateTime { get; set; } = DateTime.Now;
 }

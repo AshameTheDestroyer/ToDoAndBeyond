@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using ToDoAndBeyond.Database;
 using ToDoAndBeyond.Interfaces;
-using ToDoAndBeyond.Models;
 using ToDoAndBeyond.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +27,19 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<ApplicationDBContext>();
     context.Database.EnsureCreated();
+
+    if (args.Length > 0)
+    {
+        switch (args[0])
+        {
+            case "seeding":
+                context.EnsurePopulated();
+                break;
+            case "emptying":
+                context.EnsureEmpty();
+                break;
+        }
+    }
 }
 
 app.Run();

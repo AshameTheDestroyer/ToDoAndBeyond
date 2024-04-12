@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using ToDoAndBeyond.Models;
 
-namespace ToDoAndBeyond.Models;
+namespace ToDoAndBeyond.Database;
 
 public class ApplicationDBContext(DbContextOptions<ApplicationDBContext> options)
     : DbContext(options)

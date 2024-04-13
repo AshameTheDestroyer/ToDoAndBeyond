@@ -1,0 +1,21 @@
+@model IEnumerable<IEnumerable<ToDoProject>>
+@{
+    ViewData["Title"] = "Projects";
+    ViewData["Styling"] = "projects";
+}
+
+<h1>Projects</h1>
+<main id="project-displayer">
+    @foreach (var projectChunk in Model ?? [])
+    {
+        <section>
+            @foreach (var project in projectChunk ?? [])
+            {
+                <button class="project-title-card">
+                    <span>@(project.Icon ?? "🔘")</span>
+                    <p>@project.Name</p>
+                </button>
+            }
+        </section>
+    }
+</main>

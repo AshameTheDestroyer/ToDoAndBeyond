@@ -1,0 +1,44 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    padding: 2rem;
+
+    &>h1 {
+        font-size: x-large;
+    }
+}
+
+#project-displayer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    width: 20vw;
+    min-width: 20rem;
+
+    &>section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .project-title-card {
+            display: grid;
+            grid-template-columns: 2ch 1fr;
+            gap: 1.5rem;
+
+            padding: 0.75rem;
+
+            border-radius: 5px;
+            box-shadow: var(--box-shadow);
+            background-color: var(--background-colour);
+
+            transition: filter 250ms;
+
+            &:is(:hover, :focus-within) {
+                filter: contrast(120%) brightness(90%)
+            }
+        }
+    }
+}

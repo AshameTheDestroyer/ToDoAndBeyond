@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ToDoAndBeyond.Models;
 
-public class ToDoProject
+public record ToDoProject
 {
     [Key]
     public int ID { get; set; }

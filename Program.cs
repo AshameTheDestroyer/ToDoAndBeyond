@@ -38,6 +38,10 @@ using (var scope = app.Services.CreateScope())
             case "emptying":
                 context.EnsureEmpty();
                 break;
+            case "resetting":
+                context.EnsureEmpty();
+                context.EnsurePopulated();
+                break;
         }
     }
 }

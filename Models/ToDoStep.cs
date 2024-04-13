@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToDoAndBeyond.Models;
 
-public class ToDoStep
+public record ToDoStep
 {
     [Key]
     public int ID { get; set; }

@@ -4,7 +4,7 @@ using ToDoAndBeyond.Enums;
 
 namespace ToDoAndBeyond.Models;
 
-public class ToDoTask
+public record ToDoTask
 {
     [Key]
     public int ID { get; set; }

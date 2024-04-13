@@ -10,15 +10,7 @@ public static class ApplicationDBContextExtensions
 
         ToDoProject? project = dbContext.Projects.Any()
             ? dbContext.Projects.OrderBy(project => project.ID).First()
-            : dbContext
-                .Projects.Add(
-                    new ToDoProject()
-                    {
-                        // UserID = 1,
-                        Name = "First Project",
-                    }
-                )
-                .Entity;
+            : dbContext.Projects.Add(new ToDoProject() { Name = "First Project" }).Entity;
         hasPopulated |= dbContext.SaveChanges() > 0;
 
         ToDoTask task = dbContext.Tasks.Any()

@@ -46,7 +46,7 @@ public static class ApplicationDBContextExtensions
                     new ToDoProject()
                     {
                         Name = $"~{name}",
-                        Icon = new string[] { "📃", "📘", "📗", "📙" }[i],
+                        Icon = new string[] { "📃", "🥉", "🥈", "🥇" }[i],
                         Text = $"Contains all tasks with the importance level of {name}.",
                     }
             );

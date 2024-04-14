@@ -24,6 +24,8 @@ public static class ApplicationDBContextExtensions
                 .Entity;
         hasPopulated |= dbContext.SaveChanges() > 0;
 
+        hasPopulated |= dbContext.EnsurePopulatedWithInitialTasks(project.ID);
+
         ToDoStep _step = dbContext.Steps.Any()
             ? dbContext.Steps.OrderBy(step => step.ID).First()
             : dbContext.Steps.Add(new ToDoStep() { TaskID = task.ID, Name = "First Step" }).Entity;
@@ -48,6 +50,50 @@ public static class ApplicationDBContextExtensions
                 new ToDoCompletedProject(dbContext).InitialProject,
                 new ToDoStarredProject(dbContext).InitialProject,
                 .. ToDoImportanceProjects.InitialProjects,
+            ]
+        );
+
+        return dbContext.SaveChanges() > 0;
+    }
+
+    private static bool EnsurePopulatedWithInitialTasks(
+        this ApplicationDBContext dbContext,
+        int projectID
+    )
+    {
+        dbContext.Tasks.AddRange(
+            [
+                new ToDoTask() { Name = "Go to School", ProjectID = projectID },
+                new ToDoTask()
+                {
+                    Name = "Study for College",
+                    ProjectID = projectID,
+                    Importance = ToDoTaskImportance.Serious,
+                },
+                new ToDoTask()
+                {
+                    Name = "Find a Job",
+                    ProjectID = projectID,
+                    Importance = ToDoTaskImportance.Mandatory,
+                },
+                new ToDoTask()
+                {
+                    Name = "Get a GF",
+                    ProjectID = projectID,
+                    Importance = ToDoTaskImportance.Deadly,
+                },
+                new ToDoTask()
+                {
+                    Name = "Uncheck This",
+                    ProjectID = projectID,
+                    IsCompleted = true,
+                },
+                new ToDoTask()
+                {
+                    Name = "To Be Done",
+                    ProjectID = projectID,
+                    DueTime = DateTime.Now,
+                },
             ]
         );
 

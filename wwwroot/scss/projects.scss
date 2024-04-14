@@ -24,12 +24,6 @@
         gap: 1rem;
 
         .project-title-card {
-            display: grid;
-            grid-template-columns: 2ch 1fr;
-            gap: 1.5rem;
-
-            padding: 0.75rem;
-
             border-radius: 5px;
             box-shadow: var(--box-shadow-side);
             background-color: var(--background-colour);
@@ -38,6 +32,14 @@
 
             &:is(:hover, :focus-within) {
                 filter: contrast(120%) brightness(90%)
+            }
+
+            &>a {
+                display: grid;
+                grid-template-columns: 2ch 1fr;
+                gap: 1.5rem;
+
+                padding: 0.75rem;
             }
         }
     }

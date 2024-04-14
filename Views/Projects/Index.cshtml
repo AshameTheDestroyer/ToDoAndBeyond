@@ -27,7 +27,7 @@
 <section id="task-displayer">
     @foreach (var task in Model.Tasks ?? [])
     {
-        <button class="task-title-card link-button"
+        <button class="task-title-card link-button" data-is-starred='@(task.IsStarred ? "⭐" : "")'
             style='@(task.Colour != null ? $"--task-colour: {task.Colour};" : "") @(task.ImportanceColour != null ? $"--task-importance-colour: {task.ImportanceColour};" : "")'>
             <a href="#">
                 <input type="checkbox" checked="@task.IsCompleted">
@@ -35,7 +35,6 @@
                     @task.Name
                     <small>@(task.DueTime != null ? $"({task.DueTime?.GetDateTimeFormats()[3]})" : "")</small>
                 </p>
-                <span>@(task.IsStarred ? "⭐" : "")</span>
                 <span>@task.ImportanceIcon</span>
             </a>
         </button>

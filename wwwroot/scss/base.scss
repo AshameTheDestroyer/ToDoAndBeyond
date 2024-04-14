@@ -14,7 +14,7 @@
 
 :root {
     --main-colour: #00AF64;
-    --background-colour: #FCFCE0;
+    --background-colour: azure;
     --fore-colour: #111;
 
     --box-shadow-thickness: 2px;
@@ -24,6 +24,8 @@
         0 0 var(--box-shadow-blurriness) var(--box-shadow-thickness) var(--box-shadow-colour);
     --box-shadow-side:
         var(--box-shadow-thickness) var(--box-shadow-thickness) var(--box-shadow-blurriness) calc(var(--box-shadow-thickness) / 2) var(--box-shadow-colour);
+    --text-shadow:
+        var(--box-shadow-thickness) var(--box-shadow-thickness) calc(var(--box-shadow-blurriness) / 2) var(--box-shadow-colour);
 
     font-size: 62.5%;
 }

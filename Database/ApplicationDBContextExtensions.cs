@@ -1,3 +1,4 @@
+using ToDoAndBeyond.Classes.ToDoInitialProjects;
 using ToDoAndBeyond.Enums;
 using ToDoAndBeyond.Models;
 
@@ -40,44 +41,13 @@ public static class ApplicationDBContextExtensions
 
     private static bool EnsurePopulatedWithInitialProjects(this ApplicationDBContext dbContext)
     {
-        var importanceProjects = Enum.GetNames<ToDoTaskImportance>()
-            .Select(
-                (name, i) =>
-                    new ToDoProject()
-                    {
-                        Name = $"~{name}",
-                        Icon = new string[] { "📃", "🥉", "🥈", "🥇" }[i],
-                        Text = $"Contains all tasks with the importance level of {name}.",
-                    }
-            );
-
         dbContext.Projects.AddRange(
             [
-                new ToDoProject()
-                {
-                    Name = "~My Day",
-                    Icon = "☀️",
-                    Text = "Contains all tasks due today.",
-                },
-                new ToDoProject()
-                {
-                    Name = "~All",
-                    Icon = "♾️",
-                    Text = "Contains all tasks.",
-                },
-                new ToDoProject()
-                {
-                    Name = "~Completed",
-                    Icon = "✅",
-                    Text = "Contains all completed tasks.",
-                },
-                new ToDoProject()
-                {
-                    Name = "~Starred",
-                    Icon = "⭐",
-                    Text = "Contains all starred tasks.",
-                },
-                .. importanceProjects,
+                new ToDoMyDayProject(dbContext).InitialProject,
+                new ToDoAllProject(dbContext).InitialProject,
+                new ToDoCompletedProject(dbContext).InitialProject,
+                new ToDoStarredProject(dbContext).InitialProject,
+                .. ToDoImportanceProjects.InitialProjects,
             ]
         );
 

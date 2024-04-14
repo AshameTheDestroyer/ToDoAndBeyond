@@ -15,7 +15,7 @@ namespace ToDoAndBeyond.Migrations
     [Migration("20240412160618_InitialCreate")]
     partial class InitialCreate
     {
-        /// <inheritdoc />
+        /// <inheriDTOc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

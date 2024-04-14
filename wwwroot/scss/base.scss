@@ -61,7 +61,7 @@ input:is([type=checkbox], [type=radio]) {
 }
 
 button,
-input {
+input:not([type=checkbox]):not([type=radio]) {
     all: unset;
     display: block;
 }

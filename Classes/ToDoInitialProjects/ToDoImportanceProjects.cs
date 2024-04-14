@@ -11,7 +11,14 @@ public class ToDoImportanceProjects(
     ToDoTaskImportance taskImportance
 ) : ITodoInitialProject
 {
-    private static readonly string[] initialProjectIcons = ["📃", "🥉", "🥈", "🥇"];
+    public static Dictionary<ToDoTaskImportance, string> TaskImportanceIcons =>
+        new()
+        {
+            [ToDoTaskImportance.Regular] = "📃",
+            [ToDoTaskImportance.Serious] = "🥉",
+            [ToDoTaskImportance.Mandatory] = "🥈",
+            [ToDoTaskImportance.Deadly] = "🥇",
+        };
 
     public ToDoTaskImportance TaskImportance { get; } = taskImportance;
     public ToDoProject InitialProject =>
@@ -26,7 +33,7 @@ public class ToDoImportanceProjects(
                     new ToDoProject()
                     {
                         Name = $"~{name}",
-                        Icon = initialProjectIcons[i],
+                        Icon = TaskImportanceIcons[Enum.Parse<ToDoTaskImportance>(name)],
                         Text = $"Contains all tasks with the importance level of {name}.",
                     }
             );

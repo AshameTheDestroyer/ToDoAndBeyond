@@ -1,5 +1,5 @@
 @using ToDoAndBeyond.Enums
-@model ProjectsControllerModel
+@model ProjectsDTO
 @{
     ViewData["Title"] = "Projects";
     ViewData["Styling"] = "projects";
@@ -29,16 +29,13 @@
     {
         <button class="task-title-card link-button">
             <a href="#">
-                <span>@(task.IsCompleted ? "✅" : "🟩")</span>
+                <input type="checkbox" checked="@task.IsCompleted">
                 <p>
                     @task.Name
                     <small>@(task.DueTime != null ? $"({task.DueTime?.GetDateTimeFormats()[3]})" : "")</small>
                 </p>
                 <span>@(task.IsStarred ? "⭐" : "")</span>
-                <span>@(
-                      task.Importance == ToDoTaskImportance.Serious ? "🥉" : task.Importance == ToDoTaskImportance.Mandatory
-                      ? "🥈" : task.Importance == ToDoTaskImportance.Deadly ? "🥇" : "")
-                </span>
+                <span>@task.ImportanceIcon</span>
             </a>
         </button>
     }

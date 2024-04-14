@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ToDoAndBeyond.DTOs;
 
 namespace ToDoAndBeyond.Models;
 
@@ -17,4 +18,15 @@ public record ToDoProject
     public string? Text { get; set; }
     public DateTime CreationTime { get; set; } = DateTime.Now;
     public DateTime UpdateTime { get; set; } = DateTime.Now;
+}
+
+public static class ToDoProjectDTOMappingExtension
+{
+    public static ToDoProjectDTO MapToDTO(this ToDoProject project) =>
+        new()
+        {
+            ID = project.ID,
+            Name = project.Name,
+            Icon = project.Icon,
+        };
 }

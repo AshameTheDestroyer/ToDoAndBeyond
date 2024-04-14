@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ToDoAndBeyond.Classes.ToDoInitialProjects;
+using ToDoAndBeyond.DTOs;
 using ToDoAndBeyond.Enums;
 
 namespace ToDoAndBeyond.Models;
@@ -30,4 +32,23 @@ public record ToDoTask
     public bool IsStarred { get; set; } = false;
     public uint? Colour { get; set; }
     public ToDoTaskImportance Importance { get; set; } = ToDoTaskImportance.Regular;
+}
+
+public static class ToDoTaskDTOMappingExtension
+{
+    public static ToDoTaskDTO MapToDTO(this ToDoTask task) =>
+        new()
+        {
+            ID = task.ID,
+            Name = task.Name,
+            Icon = task.Icon,
+            DueTime = task.DueTime,
+            Importance = task.Importance,
+            ImportanceIcon =
+                task.Importance != ToDoTaskImportance.Regular
+                    ? ToDoImportanceProjects.TaskImportanceIcons[task.Importance]
+                    : "",
+            IsCompleted = task.IsCompleted,
+            IsStarred = task.IsStarred,
+        };
 }

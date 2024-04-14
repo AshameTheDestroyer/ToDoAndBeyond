@@ -90,6 +90,12 @@ public static class ApplicationDBContextExtensions
                 },
                 new ToDoTask()
                 {
+                    Name = "My Favourite Child",
+                    ProjectID = projectID,
+                    IsStarred = true,
+                },
+                new ToDoTask()
+                {
                     Name = "To Be Done",
                     ProjectID = projectID,
                     DueTime = DateTime.Now,

@@ -1,12 +1,39 @@
 #root {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
     gap: 2rem;
 
     padding: 2rem;
 
     &>h1 {
         font-size: x-large;
+
+        grid-row: 1;
+        grid-column: 1 / -1;
+    }
+}
+
+@mixin title-card {
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-side);
+    background-color: var(--background-colour);
+
+    transition: filter 250ms;
+
+    &:is(:hover, :focus-within) {
+        filter: contrast(120%) brightness(90%)
+    }
+
+    &>a {
+        display: grid;
+        gap: 1rem;
+        padding: 0.75rem;
+
+        span {
+            width: 2.5ch;
+            aspect-ratio: 1;
+        }
     }
 }
 
@@ -24,15 +51,7 @@
         gap: 1rem;
 
         .project-title-card {
-            border-radius: 5px;
-            box-shadow: var(--box-shadow-side);
-            background-color: var(--background-colour);
-
-            transition: filter 250ms;
-
-            &:is(:hover, :focus-within) {
-                filter: contrast(120%) brightness(90%)
-            }
+            @include title-card;
 
             &>a {
                 display: grid;
@@ -40,6 +59,25 @@
                 gap: 1.5rem;
 
                 padding: 0.75rem;
+            }
+        }
+    }
+}
+
+#task-displayer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .task-title-card {
+        @include title-card;
+
+        &>a {
+            grid-template-columns: 2ch 1fr 2ch 2ch;
+
+            small {
+                font-size: medium;
+                filter: contrast(0%);
             }
         }
     }

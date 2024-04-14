@@ -1,3 +1,4 @@
+@using ToDoAndBeyond.Enums
 @model ProjectsControllerModel
 @{
     ViewData["Title"] = "Projects";
@@ -27,9 +28,17 @@
     @foreach (var task in Model.Tasks ?? [])
     {
         <button class="task-title-card link-button">
-            <a href="">
-                <p>@task.Name</p>
-                <p>@task.Importance</p>
+            <a href="#">
+                <span>@(task.IsCompleted ? "✅" : "🟩")</span>
+                <p>
+                    @task.Name
+                    <small>@(task.DueTime != null ? $"({task.DueTime?.GetDateTimeFormats()[3]})" : "")</small>
+                </p>
+                <span>@(task.IsStarred ? "⭐" : "")</span>
+                <span>@(
+                      task.Importance == ToDoTaskImportance.Serious ? "🥉" : task.Importance == ToDoTaskImportance.Mandatory
+                      ? "🥈" : task.Importance == ToDoTaskImportance.Deadly ? "🥇" : "")
+                </span>
             </a>
         </button>
     }

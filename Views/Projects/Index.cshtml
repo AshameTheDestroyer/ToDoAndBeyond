@@ -27,7 +27,8 @@
 <section id="task-displayer">
     @foreach (var task in Model.Tasks ?? [])
     {
-        <button class="task-title-card link-button">
+        <button class="task-title-card link-button"
+            style='@(task.Colour != null ? $"--task-colour: {task.Colour};" : "") @(task.ImportanceColour != null ? $"--task-importance-colour: {task.ImportanceColour};" : "")'>
             <a href="#">
                 <input type="checkbox" checked="@task.IsCompleted">
                 <p>

@@ -1,3 +1,4 @@
+using System.Drawing;
 using Microsoft.EntityFrameworkCore;
 using ToDoAndBeyond.Database;
 using ToDoAndBeyond.Enums;
@@ -18,6 +19,15 @@ public class ToDoImportanceProjects(
             [ToDoTaskImportance.Serious] = "🥉",
             [ToDoTaskImportance.Mandatory] = "🥈",
             [ToDoTaskImportance.Deadly] = "🥇",
+        };
+
+    public static Dictionary<ToDoTaskImportance, string> TaskImportanceColours =>
+        new()
+        {
+            [ToDoTaskImportance.Regular] = "white",
+            [ToDoTaskImportance.Serious] = "chocolate",
+            [ToDoTaskImportance.Mandatory] = "lightblue",
+            [ToDoTaskImportance.Deadly] = "orange",
         };
 
     public ToDoTaskImportance TaskImportance { get; } = taskImportance;

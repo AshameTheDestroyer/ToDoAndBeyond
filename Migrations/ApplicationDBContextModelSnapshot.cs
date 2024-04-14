@@ -90,8 +90,8 @@ namespace ToDoAndBeyond.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<long?>("Colour")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Colour")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");

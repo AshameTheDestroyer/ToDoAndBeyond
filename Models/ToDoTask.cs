@@ -30,7 +30,7 @@ public record ToDoTask
     public DateTime? DueTime { get; set; }
     public bool IsCompleted { get; set; } = false;
     public bool IsStarred { get; set; } = false;
-    public uint? Colour { get; set; }
+    public string? Colour { get; set; }
     public ToDoTaskImportance Importance { get; set; } = ToDoTaskImportance.Regular;
 }
 
@@ -47,8 +47,13 @@ public static class ToDoTaskDTOMappingExtension
             ImportanceIcon =
                 task.Importance != ToDoTaskImportance.Regular
                     ? ToDoImportanceProjects.TaskImportanceIcons[task.Importance]
-                    : "",
+                    : null,
+            ImportanceColour =
+                task.Importance != ToDoTaskImportance.Regular
+                    ? ToDoImportanceProjects.TaskImportanceColours[task.Importance]
+                    : null,
             IsCompleted = task.IsCompleted,
             IsStarred = task.IsStarred,
+            Colour = task.Colour,
         };
 }

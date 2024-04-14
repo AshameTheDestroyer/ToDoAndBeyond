@@ -100,6 +100,19 @@ public static class ApplicationDBContextExtensions
                     ProjectID = projectID,
                     DueTime = DateTime.Now,
                 },
+                new ToDoTask()
+                {
+                    Name = "Never Greenier",
+                    ProjectID = projectID,
+                    Colour = "#00AF64",
+                },
+                new ToDoTask()
+                {
+                    Name = "Red as the Sun",
+                    ProjectID = projectID,
+                    Colour = "red",
+                    Importance = ToDoTaskImportance.Deadly,
+                },
             ]
         );
 

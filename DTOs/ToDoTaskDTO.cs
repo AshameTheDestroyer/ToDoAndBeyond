@@ -10,6 +10,8 @@ public record ToDoTaskDTO
     public DateTime? DueTime { get; set; }
     public bool IsCompleted { get; set; } = false;
     public bool IsStarred { get; set; } = false;
+    public string? Colour { get; set; }
     public ToDoTaskImportance Importance { get; set; } = ToDoTaskImportance.Regular;
-    public required string ImportanceIcon { get; set; }
+    public string? ImportanceIcon { get; set; }
+    public string? ImportanceColour { get; set; }
 }

@@ -22,7 +22,7 @@
     transition: filter 250ms;
 
     &:is(:hover, :focus-within) {
-        filter: contrast(120%) brightness(90%)
+        filter: contrast(120%) brightness(90%);
     }
 
     &>a {
@@ -71,6 +71,9 @@
 
     .task-title-card {
         @include title-card;
+
+        background-color: var(--task-colour, var(--background-colour));
+        background-image: linear-gradient(-45deg, var(--task-importance-colour) 30%, transparent 40%);
 
         &>a {
             grid-template-columns: 2ch 1fr 2ch 2ch;

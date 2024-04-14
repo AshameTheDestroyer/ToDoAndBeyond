@@ -12,10 +12,10 @@ using ToDoAndBeyond.Database;
 namespace ToDoAndBeyond.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240412160618_InitialCreate")]
+    [Migration("20240414214027_InitialCreate")]
     partial class InitialCreate
     {
-        /// <inheriDTOc />
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
@@ -93,8 +93,8 @@ namespace ToDoAndBeyond.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<long?>("Colour")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Colour")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");

@@ -1,49 +1,80 @@
 #root {
-    --padding: 1rem;
+    --padding: 2rem;
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--padding) 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: var(--padding);
 
     padding: var(--padding);
 
-    &>:is(main, section) {
-        --header-font-size: 1.6rem;
-        --padding-block: 1rem;
-        --padding-inline: 1.5rem;
-        --header-height: calc(var(--padding-block) * 2 + var(--header-font-size));
+}
 
+.displayer {
+    --inner-padding: 1.5rem;
+    --header-font-size: 2rem;
+    --header-height: calc(var(--header-font-size) + 0.7rem + var(--inner-padding) * 2);
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-lighter-colour);
+
+    &>h1 {
+        --border-thickness: 1px;
+
+        font-size: var(--header-font-size);
+
+        margin-top: var(--inner-padding);
+        margin-inline: var(--inner-padding);
+        padding-bottom: calc(var(--inner-padding) - var(--border-thickness));
+
+        border-bottom: var(--border-thickness) solid var(--fore-lighter-colour);
+    }
+
+    .slider {
         display: flex;
         flex-direction: column;
+        gap: 1rem;
 
-        &>h1 {
-            font-size: var(--header-font-size);
+        height: calc(100vh - var(--padding) * 2 - var(--inner-padding) * 2 - var(--header-height));
 
-            padding-block: calc(var(--padding-block) / 2);
-            padding-inline: var(--padding-inline);
-        }
+        padding-block: var(--inner-padding);
+        padding-inline: var(--inner-padding);
 
-        .slider {
+        overflow: hidden;
+        overflow-y: auto;
+
+        .empty-message {
             display: flex;
             flex-direction: column;
+            place-content: center;
+            place-items: center;
+            place-self: center;
             gap: 1rem;
 
-            height: calc(100vh - var(--padding) * 2 - var(--padding-block) * 2 - var(--header-height));
+            margin-block: auto;
+            padding: var(--padding);
 
-            padding-block: var(--padding-block);
-            padding-inline: var(--padding-inline);
+            &>span {
+                font-size: xx-large;
 
-            overflow: hidden;
-            overflow-y: auto;
+                text-shadow: var(--text-shadow);
+            }
+
+            &>p {
+                font-size: larger;
+            }
         }
     }
 }
 
 @mixin title-card {
-    --title-card-colour: white;
+    --title-card-colour: var(--background-colour);
 
     border-radius: 5px;
-    box-shadow: var(--box-shadow-side);
+    box-shadow: var(--box-shadow);
     background-color: var(--title-card-colour);
 
     transition: filter 250ms;
@@ -61,7 +92,7 @@
         place-items: start stretch;
         gap: 1rem;
 
-        padding: 0.75rem;
+        padding: 1rem;
 
         input {
             position: relative;
@@ -81,19 +112,16 @@
 
 #project-displayer {
 
-    &>.slider {
-        padding: 0 !important;
+    .project-title-card {
+        @include title-card;
 
-        .project-title-card {
-            @include title-card;
+        &[data-is-builtin=true]+[data-is-builtin=false] {
+            margin-top: var(--padding);
+        }
 
-            &>a {
-                display: grid;
-                grid-template-columns: 2ch 1fr;
-                gap: 1.5rem;
-
-                padding: 0.75rem;
-            }
+        &>a {
+            grid-template-columns: 2ch 1fr;
+            gap: 1.5rem;
         }
     }
 }

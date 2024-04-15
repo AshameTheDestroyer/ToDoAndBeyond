@@ -5,35 +5,37 @@
     ViewData["Styling"] = "projects";
 }
 
-<main id="project-displayer">
+<main id="project-displayer" class="displayer">
     <h1>Projects</h1>
     <section class="slider">
         @foreach (var projectChunk in Model.ProjectChunks ?? [])
         {
-            <section class="slider">
-                @foreach (var project in projectChunk ?? [])
-                {
-                    <button class="project-title-card link-button">
-                        <a asp-controller="Projects" asp-route-projectID="@project.ID"
-                            asp-route-projectName='@project.Name.Replace(" ", "")'>
-                            <span>@(project.Icon ?? "🔘")</span>
-                            <p>@project.Name.Replace("~", "")</p>
-                        </a>
-                    </button>
-                }
-            </section>
+            @foreach (var project in projectChunk ?? [])
+            {
+                <button class="project-title-card link-button"
+                    data-is-builtin="@project.Name.StartsWith('~').ToString().ToLower()">
+                    <a asp-controller="Projects" asp-route-projectID="@project.ID"
+                        asp-route-projectName='@project.Name.Replace(" ", "")'>
+                        <span>@(project.Icon ?? "🔘")</span>
+                        <p>@project.Name.Replace("~", "")</p>
+                    </a>
+                </button>
+            }
         }
     </section>
 </main>
 
-@if (Model.Tasks == null)
-{
-    return;
-}
-
-<section id="task-displayer">
+<section id="task-displayer" class="displayer">
     <h1>Tasks</h1>
     <section class="slider">
+        @if (Model.Tasks == null || Model.Tasks.Any() == false)
+        {
+            <div class="empty-message">
+                <span>🥲</span>
+                <p>There's no tasks here yet.</p>
+            </div>
+        }
+
         @foreach (var task in Model.Tasks ?? [])
         {
             <button class="task-title-card link-button" data-is-starred='@(task.IsStarred ? "⭐" : "")'
@@ -52,14 +54,17 @@
     </section>
 </section>
 
-@if (Model.Steps == null)
-{
-    return;
-}
-
-<section id="step-displayer">
+<section id="step-displayer" class="displayer">
     <h1>Steps</h1>
     <section class="slider">
+        @if (Model.Steps == null || Model.Steps?.Any() == false)
+        {
+            <div class="empty-message">
+                <span>🥲</span>
+                <p>There's no steps here yet.</p>
+            </div>
+        }
+
         @foreach (var step in Model.Steps ?? [])
         {
             <button class="step-title-card link-button">

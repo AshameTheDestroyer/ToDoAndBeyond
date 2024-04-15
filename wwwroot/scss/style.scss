@@ -8,3 +8,15 @@
         flex-grow: 1;
     }
 }
+
+body {
+    --background-colour: #10101f;
+    --background-lighter-colour: #08080f;
+    --fore-colour: white;
+    --fore-lighter-colour: #3e3e5e;
+    --box-shadow-colour: #3e3e5e;
+    --box-shadow-blurriness: 0px;
+    --box-shadow:
+        0 0 var(--box-shadow-blurriness) var(--box-shadow-thickness) var(--box-shadow-colour);
+    --text-shadow: none;
+}

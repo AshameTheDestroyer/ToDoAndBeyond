@@ -5,7 +5,7 @@ using ToDoAndBeyond.Enums;
 using ToDoAndBeyond.Interfaces;
 using ToDoAndBeyond.Models;
 
-namespace ToDoAndBeyond.Services;
+namespace ToDoAndBeyond.Repositories;
 
 public class ToDoTaskRepository(ApplicationDBContext dbContext) : IToDoTaskRepository
 {

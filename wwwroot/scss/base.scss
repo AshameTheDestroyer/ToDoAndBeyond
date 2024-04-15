@@ -16,6 +16,7 @@
     --main-colour: #00AF64;
     --background-colour: azure;
     --fore-colour: #111;
+    --half-transparent: #0000007c;
 
     --box-shadow-thickness: 2px;
     --box-shadow-blurriness: 4px;
@@ -70,5 +71,28 @@ input:not([type=checkbox]):not([type=radio]) {
 
 button,
 input:is([type=checkbox], [type=radio], [type=button], [type=submit], [type=reset]) {
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    --size: 6px;
+
+    width: var(--size);
+    height: var(--size);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--half-transparent);
+}
+
+*:not(body)::-webkit-scrollbar-track {
+    border-radius: 100rem;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100rem;
+    border: 2px solid var(--half-transparent);
+    background-color: var(--background-colour);
+
     cursor: pointer;
 }

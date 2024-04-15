@@ -3,7 +3,7 @@ using ToDoAndBeyond.Database;
 using ToDoAndBeyond.Interfaces;
 using ToDoAndBeyond.Models;
 
-namespace ToDoAndBeyond.Services;
+namespace ToDoAndBeyond.Repositories;
 
 public class ToDoStepRepository(ApplicationDBContext dbContext) : IToDoStepRepository
 {

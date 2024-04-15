@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ToDoAndBeyond.Database;
 using ToDoAndBeyond.Interfaces;
-using ToDoAndBeyond.Services;
+using ToDoAndBeyond.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

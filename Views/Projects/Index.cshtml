@@ -5,38 +5,69 @@
     ViewData["Styling"] = "projects";
 }
 
-<h1>Projects</h1>
 <main id="project-displayer">
-    @foreach (var projectChunk in Model.ProjectChunks ?? [])
-    {
-        <section>
-            @foreach (var project in projectChunk ?? [])
-            {
-                <button class="project-title-card link-button">
-                    <a asp-controller="Projects" asp-route-projectID="@project.ID"
-                        asp-route-projectName='@project.Name.Replace(" ", "")'>
-                        <span>@(project.Icon ?? "🔘")</span>
-                        <p>@project.Name.Replace("~", "")</p>
-                    </a>
-                </button>
-            }
-        </section>
-    }
+    <h1>Projects</h1>
+    <section class="slider">
+        @foreach (var projectChunk in Model.ProjectChunks ?? [])
+        {
+            <section class="slider">
+                @foreach (var project in projectChunk ?? [])
+                {
+                    <button class="project-title-card link-button">
+                        <a asp-controller="Projects" asp-route-projectID="@project.ID"
+                            asp-route-projectName='@project.Name.Replace(" ", "")'>
+                            <span>@(project.Icon ?? "🔘")</span>
+                            <p>@project.Name.Replace("~", "")</p>
+                        </a>
+                    </button>
+                }
+            </section>
+        }
+    </section>
 </main>
 
+@if (Model.Tasks == null)
+{
+    return;
+}
+
 <section id="task-displayer">
-    @foreach (var task in Model.Tasks ?? [])
-    {
-        <button class="task-title-card link-button" data-is-starred='@(task.IsStarred ? "⭐" : "")'
-            style='@(task.Colour != null ? $"--task-colour: {task.Colour};" : "") @(task.ImportanceColour != null ? $"--task-importance-colour: {task.ImportanceColour};" : "")'>
-            <a href="#">
-                <input type="checkbox" checked="@task.IsCompleted">
-                <p>
-                    @task.Name
-                    <small>@(task.DueTime != null ? $"({task.DueTime?.GetDateTimeFormats()[3]})" : "")</small>
-                </p>
-                <span>@task.ImportanceIcon</span>
-            </a>
-        </button>
-    }
+    <h1>Tasks</h1>
+    <section class="slider">
+        @foreach (var task in Model.Tasks ?? [])
+        {
+            <button class="task-title-card link-button" data-is-starred='@(task.IsStarred ? "⭐" : "")'
+                style='@(task.Colour != null ? $"--task-colour: {task.Colour};" : "") @(task.ImportanceColour != null ? $"--task-importance-colour: {task.ImportanceColour};" : "")'>
+                <a asp-controller="Projects" asp-route-projectID="@Model.SelectedProject?.ID"
+                    asp-route-projectName='@Model.SelectedProject?.Name.Replace(" ", "")' asp-route-taskID="@task.ID">
+                    <input type="checkbox" checked="@task.IsCompleted">
+                    <p>
+                        @task.Name
+                        <small>@(task.DueTime != null ? $"({task.DueTime?.GetDateTimeFormats()[3]})" : "")</small>
+                    </p>
+                    <span>@task.ImportanceIcon</span>
+                </a>
+            </button>
+        }
+    </section>
+</section>
+
+@if (Model.Steps == null)
+{
+    return;
+}
+
+<section id="step-displayer">
+    <h1>Steps</h1>
+    <section class="slider">
+        @foreach (var step in Model.Steps ?? [])
+        {
+            <button class="step-title-card link-button">
+                <a href="#">
+                    <input type="checkbox" checked="@step.IsCompleted">
+                    <p>@step.Name</p>
+                </a>
+            </button>
+        }
+    </section>
 </section>

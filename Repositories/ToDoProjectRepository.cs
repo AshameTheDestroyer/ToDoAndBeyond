@@ -12,6 +12,9 @@ public class ToDoProjectRepository(ApplicationDBContext dbContext) : IToDoProjec
     public async Task<IEnumerable<ToDoProject>> GetToDoProjects() =>
         await dbContext.Projects.ToListAsync();
 
+    public async Task<ToDoProject?> GetToDoProject(int id) =>
+        await dbContext.Projects.FirstAsync(project => project.ID == id);
+
     public bool AddToDoProject(ToDoProject project)
     {
         dbContext.Projects.Add(project);

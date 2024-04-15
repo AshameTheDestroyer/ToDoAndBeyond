@@ -1,30 +1,41 @@
 #root {
-    --gap: 2rem;
-    --padding: 2rem;
-    --header-size: calc(1.6rem + var(--gap) / 2);
+    --padding: 1rem;
 
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: var(--header-size) 1fr;
-    gap: var(--gap);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--padding) 0;
 
     padding: var(--padding);
 
-    &>h1 {
-        font-size: x-large;
-
-        grid-row: 1;
-        grid-column: 1 / -1;
-    }
-
     &>:is(main, section) {
-        height: calc(100vh - var(--padding) * 2 - var(--header-size) - var(--gap));
+        --header-font-size: 1.6rem;
+        --padding-block: 1rem;
+        --padding-inline: 1.5rem;
+        --header-height: calc(var(--padding-block) * 2 + var(--header-font-size));
 
-        margin: calc(var(--padding) * -0.5);
-        padding: calc(var(--padding) / 2);
+        display: flex;
+        flex-direction: column;
 
-        overflow: hidden;
-        overflow-y: auto;
+        &>h1 {
+            font-size: var(--header-font-size);
+
+            padding-block: calc(var(--padding-block) / 2);
+            padding-inline: var(--padding-inline);
+        }
+
+        .slider {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            height: calc(100vh - var(--padding) * 2 - var(--padding-block) * 2 - var(--header-height));
+
+            padding-block: var(--padding-block);
+            padding-inline: var(--padding-inline);
+
+            overflow: hidden;
+            overflow-y: auto;
+        }
     }
 }
 
@@ -69,17 +80,9 @@
 }
 
 #project-displayer {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
 
-    width: 20vw;
-    min-width: 20rem;
-
-    &>section {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+    &>.slider {
+        padding: 0 !important;
 
         .project-title-card {
             @include title-card;
@@ -96,12 +99,6 @@
 }
 
 #task-displayer {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    width: 40vw;
-    min-width: 20rem;
 
     .task-title-card {
         @include title-card;
@@ -131,6 +128,17 @@
                 font-size: medium;
                 filter: contrast(0%);
             }
+        }
+    }
+}
+
+#step-displayer {
+
+    .step-title-card {
+        @include title-card;
+
+        &>a {
+            grid-template-columns: var(--input-size) 1fr;
         }
     }
 }

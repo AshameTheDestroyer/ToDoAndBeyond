@@ -11,6 +11,9 @@ public class ToDoStepRepository(ApplicationDBContext dbContext) : IToDoStepRepos
 
     public async Task<IEnumerable<ToDoStep>> GetToDoSteps() => await dbContext.Steps.ToListAsync();
 
+    public async Task<IEnumerable<ToDoStep>> GetToDoSteps(int taskID) =>
+        await dbContext.Steps.Where(step => step.TaskID == taskID).ToListAsync();
+
     public bool AddToDoStep(ToDoStep step)
     {
         dbContext.Steps.Add(step);

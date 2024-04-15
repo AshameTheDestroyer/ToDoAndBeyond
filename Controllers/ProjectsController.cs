@@ -8,7 +8,8 @@ namespace ToDoAndBeyond.Controllers;
 public class ProjectsController(
     ILogger<ProjectsController> logger,
     IToDoProjectRepository projectRepository,
-    IToDoTaskRepository taskRepository
+    IToDoTaskRepository taskRepository,
+    IToDoStepRepository stepRepository
 ) : Controller
 {
     private readonly ILogger<ProjectsController> logger = logger;
@@ -30,16 +31,24 @@ public class ProjectsController(
         );
 
     [HttpGet("Projects/Project{projectID:int}/{projectName}")]
-    public ActionResult Index(int projectID, string projectName) =>
+    [HttpGet("Projects/Project{projectID:int}/{projectName}/{taskID:int}")]
+    public ActionResult Index(int projectID, string projectName, int? taskID = null) =>
         View(
             new ProjectsDTO
             {
+                SelectedProject = projectRepository.GetToDoProject(projectID).Result?.MapToDTO(),
                 ProjectChunks = projectChunks.Select(projectChunk =>
                     projectChunk.Select(project => project.MapToDTO())
                 ),
                 Tasks = taskRepository
                     .GetToDoTasks(projectID, projectName)
-                    .Result.Select(task => task.MapToDTO())
+                    .Result.Select(task => task.MapToDTO()),
+                Steps =
+                    taskID != null
+                        ? stepRepository
+                            .GetToDoSteps(taskID.Value)
+                            .Result.Select(step => step.MapToDTO())
+                        : null,
             }
         );
 }

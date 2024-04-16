@@ -80,7 +80,7 @@
     transition: filter 250ms;
 
     &:is(:hover, :focus-within) {
-        filter: contrast(120%) brightness(90%);
+        filter: brightness(70%);
     }
 
     &>a {
@@ -133,7 +133,6 @@
 
         position: relative;
 
-        background-color: var(--task-colour, var(--title-card-colour));
         background-image: linear-gradient(-45deg, var(--task-importance-colour) 30%, transparent 40%);
 
         &[data-is-starred]:not([data-is-starred=""])::after {

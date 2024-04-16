@@ -39,7 +39,7 @@
         @foreach (var task in Model.Tasks ?? [])
         {
             <button class="task-title-card link-button" data-is-starred='@(task.IsStarred ? "⭐" : "")'
-                style='@(task.Colour != null ? $"--task-colour: {task.Colour};" : "") @(task.ImportanceColour != null ? $"--task-importance-colour: {task.ImportanceColour};" : "")'>
+                style='@(task.Colour != null ? $"--title-card-colour: {task.Colour};" : "") @(task.ImportanceColour != null ? $"--task-importance-colour: {task.ImportanceColour};" : "")'>
                 <a asp-controller="Projects" asp-route-projectID="@Model.SelectedProject?.ID"
                     asp-route-projectName='@Model.SelectedProject?.Name.Replace(" ", "")' asp-route-taskID="@task.ID">
                     <input type="checkbox" checked="@task.IsCompleted">

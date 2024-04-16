@@ -98,3 +98,7 @@ input:is([type=checkbox], [type=radio], [type=button], [type=submit], [type=rese
 
     cursor: pointer;
 }
+
+strong {
+    color: var(--main-colour);
+}

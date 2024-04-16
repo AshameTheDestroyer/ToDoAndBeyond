@@ -8,6 +8,14 @@
 <main id="project-displayer" class="displayer">
     <h1>Projects</h1>
     <section class="slider">
+        @if (Model.ProjectChunks.Aggregate(0, (accumulator, projectChunk) => accumulator + projectChunk.Count()) == 0)
+        {
+            <div class="empty-message">
+                <span>🥲</span>
+                <p>There's no <strong>projects</strong> here yet.</p>
+            </div>
+        }
+
         @foreach (var projectChunk in Model.ProjectChunks ?? [])
         {
             @foreach (var project in projectChunk ?? [])
@@ -32,7 +40,7 @@
         {
             <div class="empty-message">
                 <span>🥲</span>
-                <p>There's no tasks here yet.</p>
+                <p>There's no <strong>tasks</strong> here yet.</p>
             </div>
         }
 
@@ -61,7 +69,7 @@
         {
             <div class="empty-message">
                 <span>🥲</span>
-                <p>There's no steps here yet.</p>
+                <p>There's no <strong>steps</strong> here yet.</p>
             </div>
         }
 

@@ -21,7 +21,7 @@
             @foreach (var project in projectChunk ?? [])
             {
                 <button class="project-title-card link-button"
-                    data-is-builtin="@project.Name.StartsWith('~').ToString().ToLower()">
+                    data-is-initial="@project.Name.StartsWith('~').ToString().ToLower()">
                     <a asp-controller="Projects" asp-route-projectID="@project.ID"
                         asp-route-projectName='@project.Name.Replace(" ", "")'>
                         <span>@(project.Icon ?? "🔘")</span>

@@ -115,7 +115,7 @@
     .project-title-card {
         @include title-card;
 
-        &[data-is-builtin=true]+[data-is-builtin=false] {
+        &[data-is-initial=true]+[data-is-initial=false] {
             margin-top: var(--padding);
         }
 

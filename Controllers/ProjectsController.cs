@@ -36,6 +36,10 @@ public class ProjectsController(
         View(
             new ProjectsDTO
             {
+                SelectedTask =
+                    taskID != null
+                        ? taskRepository.GetToDoTask(taskID.Value).Result?.MapToDTO()
+                        : null,
                 SelectedProject = projectRepository.GetToDoProject(projectID).Result?.MapToDTO(),
                 ProjectChunks = projectChunks.Select(projectChunk =>
                     projectChunk.Select(project => project.MapToDTO())

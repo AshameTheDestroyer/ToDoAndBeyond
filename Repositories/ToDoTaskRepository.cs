@@ -13,6 +13,9 @@ public class ToDoTaskRepository(ApplicationDBContext dbContext) : IToDoTaskRepos
     private readonly string ToDoInitialProjectNamespace =
         $"{nameof(ToDoAndBeyond)}.{nameof(Classes)}.{nameof(Classes.ToDoInitialProjects)}";
 
+    public async Task<ToDoTask?> GetToDoTask(int id) =>
+        await dbContext.Tasks.FirstAsync(task => task.ID == id);
+
     public async Task<IEnumerable<ToDoTask>> GetToDoTasks() => await dbContext.Tasks.ToListAsync();
 
     public async Task<IEnumerable<ToDoTask>> GetToDoTasks(int projectID) =>

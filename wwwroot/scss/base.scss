@@ -17,12 +17,12 @@
     --background-colour: azure;
     --background-lighter-colour: white;
     --fore-colour: #000;
-    --fore-lighter-colour: #111;
+    --fore-lighter-colour: #0d0d0d7c;
     --half-transparent: #0000007c;
 
     --box-shadow-thickness: 1px;
     --box-shadow-blurriness: 4px;
-    --box-shadow-colour: #0d0d0d70;
+    --box-shadow-colour: var(--fore-lighter-colour);
     --box-shadow:
         0 0 var(--box-shadow-blurriness) var(--box-shadow-thickness) var(--box-shadow-colour);
     --box-shadow-side:

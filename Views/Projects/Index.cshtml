@@ -16,9 +16,9 @@
             </div>
         }
 
-        @foreach (var projectChunk in Model.ProjectChunks ?? [])
+        @foreach (var projectChunk in Model.ProjectChunks)
         {
-            @foreach (var project in projectChunk ?? [])
+            @foreach (var project in projectChunk)
             {
                 <button class="project-title-card link-button"
                     data-is-initial="@project.Name.StartsWith('~').ToString().ToLower()">
@@ -44,18 +44,24 @@
             </div>
         }
 
-        @foreach (var task in Model.Tasks ?? [])
+        @foreach (var nestableTask in Model.GetNestableToDoTasks())
         {
-            <button class="task-title-card link-button" data-is-starred='@(task.IsStarred ? "⭐" : "")'
-                style='@(task.Colour != null ? $"--title-card-colour: {task.Colour};" : "") @(task.ImportanceColour != null ? $"--task-importance-colour: {task.ImportanceColour};" : "")'>
+            <button class="task-title-card link-button" data-is-starred='@(nestableTask.Task.IsStarred ? "⭐" : "")'
+                data-is-nested='@((nestableTask.NestingLevel > 0).ToString().ToLower())' style='
+                @(nestableTask.Task.Colour != null ? $"--title-card-colour: {nestableTask.Task.Colour};" : "")
+                @(nestableTask.Task.ImportanceColour != null ? $"--task-importance-colour: {nestableTask.Task.ImportanceColour};" : "")
+                @($"--task-nesting-level: {nestableTask.NestingLevel};")
+                @($"--task-gap-level: {nestableTask.GapLevel};")'>
                 <a asp-controller="Projects" asp-route-projectID="@Model.SelectedProject?.ID"
-                    asp-route-projectName='@Model.SelectedProject?.Name.Replace(" ", "")' asp-route-taskID="@task.ID">
-                    <input type="checkbox" checked="@task.IsCompleted">
+                    asp-route-projectName='@Model.SelectedProject?.Name.Replace(" ", "")'
+                    asp-route-taskID="@nestableTask.Task.ID">
+                    <input type="checkbox" checked="@nestableTask.Task.IsCompleted">
                     <p>
-                        @task.Name
-                        <small>@(task.DueTime != null ? $"({task.DueTime?.GetDateTimeFormats()[3]})" : "")</small>
+                        @nestableTask.Task.Name
+                        <small>@(nestableTask.Task.DueTime != null ?
+                             $"({nestableTask.Task.DueTime?.GetDateTimeFormats()[3]})" : "")</small>
                     </p>
-                    <span>@task.ImportanceIcon</span>
+                    <span>@nestableTask.Task.ImportanceIcon</span>
                 </a>
             </button>
         }
@@ -65,7 +71,7 @@
 <section id="step-displayer" class="displayer">
     <h1>Steps</h1>
     <section class="slider">
-        @if (Model.Steps == null || Model.Steps?.Any() == false)
+        @if (Model.Steps == null || Model.Steps.Any() == false)
         {
             <div class="empty-message">
                 <span>🥲</span>
@@ -73,7 +79,7 @@
             </div>
         }
 
-        @foreach (var step in Model.Steps ?? [])
+        @foreach (var step in Model.Steps ?? Array.Empty<ToDoStepDTO>())
         {
             <button class="step-title-card link-button">
                 <a href="#">

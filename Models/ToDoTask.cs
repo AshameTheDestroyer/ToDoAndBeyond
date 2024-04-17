@@ -42,8 +42,12 @@ public static class ToDoTaskDTOMappingExtension
             ID = task.ID,
             Name = task.Name,
             Icon = task.Icon,
+            Colour = task.Colour,
             DueTime = task.DueTime,
+            IsStarred = task.IsStarred,
             Importance = task.Importance,
+            IsCompleted = task.IsCompleted,
+            ParentTaskID = task.ParentTaskID,
             ImportanceIcon =
                 task.Importance != ToDoTaskImportance.Regular
                     ? ToDoImportanceProjects.TaskImportanceIcons[task.Importance]
@@ -52,8 +56,5 @@ public static class ToDoTaskDTOMappingExtension
                 task.Importance != ToDoTaskImportance.Regular
                     ? ToDoImportanceProjects.TaskImportanceColours[task.Importance]
                     : null,
-            IsCompleted = task.IsCompleted,
-            IsStarred = task.IsStarred,
-            Colour = task.Colour,
         };
 }

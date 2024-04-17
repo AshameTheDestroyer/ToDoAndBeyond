@@ -9,8 +9,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:ToDoAndBeyondConnection"])
 );
 
-builder.Services.AddControllersWithViews();
-
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IToDoProjectRepository, ToDoProjectRepository>();
 builder.Services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
 builder.Services.AddScoped<IToDoStepRepository, ToDoStepRepository>();

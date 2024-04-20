@@ -9,31 +9,43 @@ public record ProjectsDTO
     public IEnumerable<ToDoStepDTO>? Steps { get; set; }
 }
 
+public record NestableToDoTaskDTO(ToDoTaskDTO Task, int NestingLevel, int GapLevel);
+
 public static class ProjectsDTORenderingExtensions
 {
-    public record NestableToDoTask(ToDoTaskDTO Task, int NestingLevel, int GapLevel);
-
-    public static IEnumerable<NestableToDoTask> GetNestableToDoTasks(this ProjectsDTO projectsDTO)
+    public static IEnumerable<NestableToDoTaskDTO>? GetNestableToDoTasks(
+        this ProjectsDTO projectsDTO
+    )
     {
         if (projectsDTO.Tasks == null)
         {
-            return [];
+            return null;
         }
 
         var rootTasks = projectsDTO
             .Tasks.Where(task => task.ParentTaskID == null)
-            .Select(task => new NestableToDoTask(task, NestingLevel: 0, GapLevel: 0))
+            .Select(task => new NestableToDoTaskDTO(task, NestingLevel: 0, GapLevel: 0))
             .ToList();
 
         var nestedTasks = projectsDTO.Tasks.Where(task => task.ParentTaskID != null).ToList();
         foreach (var nestedTask in nestedTasks)
         {
-            var parentTask = rootTasks.First(nestableTask =>
-                nestableTask.Task.ID == nestedTask.ParentTaskID
+            var parentTask = rootTasks.FirstOrDefault(
+                nestableTask => nestableTask?.Task.ID == nestedTask.ParentTaskID,
+                null
             );
+
+            if (parentTask == null)
+            {
+                rootTasks.Add(
+                    new NestableToDoTaskDTO(Task: nestedTask, NestingLevel: 0, GapLevel: 0)
+                );
+                continue;
+            }
+
             rootTasks.Insert(
                 rootTasks.IndexOf(parentTask) + 1,
-                new NestableToDoTask(
+                new NestableToDoTaskDTO(
                     Task: nestedTask,
                     NestingLevel: parentTask.NestingLevel + 1,
                     GapLevel: 1

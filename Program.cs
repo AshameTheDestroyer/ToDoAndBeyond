@@ -9,15 +9,20 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:ToDoAndBeyondConnection"])
 );
 
+builder.Services.AddRazorPages();
+builder.Services.AddRazorComponents();
+builder.Services.AddServerSideBlazor();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-builder.Services.AddScoped<IToDoProjectRepository, ToDoProjectRepository>();
-builder.Services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
+
 builder.Services.AddScoped<IToDoStepRepository, ToDoStepRepository>();
+builder.Services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
+builder.Services.AddScoped<IToDoProjectRepository, ToDoProjectRepository>();
 
 var app = builder.Build();
 
-app.UseStaticFiles();
 app.UseRouting();
+app.MapBlazorHub();
+app.UseStaticFiles();
 app.UseAuthorization();
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 

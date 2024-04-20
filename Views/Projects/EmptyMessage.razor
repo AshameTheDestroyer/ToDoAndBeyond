@@ -1,0 +1,11 @@
+@using ToDoAndBeyond.Enums
+@code
+{
+    [Parameter]
+    public required EmptyMessageType EmptyMessageType { get; set; }
+}
+
+<div class="empty-message">
+    <span>🥲</span>
+    <p>There's no <strong>@(EmptyMessageType + "s")</strong> here yet.</p>
+</div>

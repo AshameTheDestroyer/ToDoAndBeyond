@@ -1,0 +1,45 @@
+@using ToDoAndBeyond.Controllers
+@using ToDoAndBeyond.DTOs
+@code
+{
+    [Parameter]
+    public required NestableToDoTaskDTO NestableTask { get; set; }
+    
+    [Parameter]
+    public required ToDoProjectDTO SelectedProject { get; set; }
+
+    private string GetStyle()
+    {
+        string titleCardColour = NestableTask.Task.Colour != null ? $"--title-card-colour: {NestableTask.Task.Colour};" : "",
+            taskImportanceColour = NestableTask.Task.ImportanceColour != null ? $"--task-importance-colour: {NestableTask.Task.ImportanceColour};" : "",
+            taskNestingLevel = $"--task-nesting-level: {NestableTask.NestingLevel};",
+            TaskGapLevel = $"--task-gap-level: {NestableTask.GapLevel};";
+            
+        return new string[]
+        {
+            titleCardColour,
+            taskImportanceColour,
+            taskNestingLevel,
+            TaskGapLevel,
+        }.Aggregate("", (accumulator, @string) => accumulator + @string);
+    }
+
+    private string GetDate() => NestableTask.Task.DueTime != null ?
+        $"({NestableTask.Task.DueTime?.GetDateTimeFormats()[3]})" : "";
+}
+
+<button 
+    class="task-title-card link-button"
+    data-is-starred='@(NestableTask.Task.IsStarred ? "⭐" : "")'
+    data-is-nested="@((NestableTask.NestingLevel > 0).ToString().ToLower())"
+    style="@GetStyle()"
+>
+    <a href="@ProjectsController.GenerateURL(SelectedProject.ID, SelectedProject.Name, NestableTask.Task.ID)">
+        <input type="checkbox" checked="@NestableTask.Task.IsCompleted">
+        <p>
+            @NestableTask.Task.Name
+            <small>@GetDate()</small>
+        </p>
+        <span>@NestableTask.Task.ImportanceIcon</span>
+    </a>
+</button>

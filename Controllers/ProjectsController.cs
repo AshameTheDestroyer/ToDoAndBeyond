@@ -1,3 +1,4 @@
+using Extensions;
 using Microsoft.AspNetCore.Mvc;
 using ToDoAndBeyond.DTOs;
 using ToDoAndBeyond.Interfaces;
@@ -12,6 +13,10 @@ public class ProjectsController(
     IToDoStepRepository stepRepository
 ) : Controller
 {
+    private const string baseURL = "/Projects";
+    private const string projectURL = baseURL + "/Project{projectID}/{projectName}";
+    private const string taskURL = projectURL + "/Task{taskID}";
+
     private readonly ILogger<ProjectsController> logger = logger;
     private readonly IEnumerable<IEnumerable<ToDoProject>> projectChunks =
     [
@@ -19,7 +24,17 @@ public class ProjectsController(
         projectRepository.GetToDoProjects().Result.Where(project => !project.Name.StartsWith('~')),
     ];
 
-    [HttpGet("Projects")]
+    public static string GenerateURL(int projectID, string projectName, int? taskID = null) =>
+        (taskID == null ? projectURL : taskURL).Format(
+            new
+            {
+                projectID,
+                projectName = projectName.Replace(" ", ""),
+                taskID,
+            }
+        );
+
+    [HttpGet(baseURL)]
     public ActionResult Index() =>
         View(
             new ProjectsDTO
@@ -30,8 +45,8 @@ public class ProjectsController(
             }
         );
 
-    [HttpGet("Projects/Project{projectID:int}/{projectName}")]
-    [HttpGet("Projects/Project{projectID:int}/{projectName}/{taskID:int}")]
+    [HttpGet(taskURL)]
+    [HttpGet(projectURL)]
     public ActionResult Index(int projectID, string projectName, int? taskID = null) =>
         View(
             new ProjectsDTO

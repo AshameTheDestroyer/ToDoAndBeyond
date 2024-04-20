@@ -1,0 +1,14 @@
+@using ToDoAndBeyond.Controllers
+@using ToDoAndBeyond.DTOs
+@code
+{
+    [Parameter]
+    public required ToDoProjectDTO Project { get; set; }
+}
+
+<button class="project-title-card link-button" data-is-initial="@Project.Name.StartsWith('~').ToString().ToLower()">
+    <a href="@ProjectsController.GenerateURL(Project.ID, Project.Name)">
+        <span>@(Project.Icon ?? "🔘")</span>
+        <p>@Project.Name.Replace("~", "")</p>
+    </a>
+</button>

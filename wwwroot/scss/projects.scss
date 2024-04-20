@@ -147,6 +147,11 @@
 
         background-image: linear-gradient(-45deg, var(--task-importance-colour) 30%, transparent 40%);
 
+        input:checked+p {
+            text-decoration: line-through;
+            filter: contrast(0%);
+        }
+
         &[data-is-starred]:not([data-is-starred=""])::after {
             content: attr(data-is-starred);
 

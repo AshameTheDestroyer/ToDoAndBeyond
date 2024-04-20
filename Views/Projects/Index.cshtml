@@ -1,4 +1,6 @@
 @using ToDoAndBeyond.Enums
+@using ToDoAndBeyond.Views.Projects
+@using Microsoft.AspNetCore.Components
 @model ProjectsDTO
 @{
     ViewData["Title"] = "Projects";
@@ -8,26 +10,16 @@
 <main id="project-displayer" class="displayer">
     <h1>Projects</h1>
     <section class="slider">
-        @if (Model.ProjectChunks.Aggregate(0, (accumulator, projectChunk) => accumulator + projectChunk.Count()) == 0)
+        @if (!Model.ProjectChunks.Any(projectChunk => projectChunk.Any()))
         {
-            <div class="empty-message">
-                <span>🥲</span>
-                <p>There's no <strong>projects</strong> here yet.</p>
-            </div>
+            <component type="typeof(EmptyMessage)" render-mode="Static" param-emptyMessageType="EmptyMessageType.Project" />
         }
 
         @foreach (var projectChunk in Model.ProjectChunks)
         {
             @foreach (var project in projectChunk)
             {
-                <button class="project-title-card link-button"
-                    data-is-initial="@project.Name.StartsWith('~').ToString().ToLower()">
-                    <a asp-controller="Projects" asp-route-projectID="@project.ID"
-                        asp-route-projectName='@project.Name.Replace(" ", "")'>
-                        <span>@(project.Icon ?? "🔘")</span>
-                        <p>@project.Name.Replace("~", "")</p>
-                    </a>
-                </button>
+                <component type="typeof(ToDoProjectCard)" render-mode="Static" param-project="project" />
             }
         }
     </section>
@@ -38,32 +30,13 @@
     <section class="slider">
         @if (Model.Tasks == null || Model.Tasks.Any() == false)
         {
-            <div class="empty-message">
-                <span>🥲</span>
-                <p>There's no <strong>tasks</strong> here yet.</p>
-            </div>
+            <component type="typeof(EmptyMessage)" render-mode="Static" param-emptyMessageType="EmptyMessageType.Task" />
         }
 
-        @foreach (var nestableTask in Model.GetNestableToDoTasks())
+        @foreach (var nestableTask in Model.GetNestableToDoTasks() ?? Array.Empty<NestableToDoTaskDTO>())
         {
-            <button class="task-title-card link-button" data-is-starred='@(nestableTask.Task.IsStarred ? "⭐" : "")'
-                data-is-nested='@((nestableTask.NestingLevel > 0).ToString().ToLower())' style='
-                @(nestableTask.Task.Colour != null ? $"--title-card-colour: {nestableTask.Task.Colour};" : "")
-                @(nestableTask.Task.ImportanceColour != null ? $"--task-importance-colour: {nestableTask.Task.ImportanceColour};" : "")
-                @($"--task-nesting-level: {nestableTask.NestingLevel};")
-                @($"--task-gap-level: {nestableTask.GapLevel};")'>
-                <a asp-controller="Projects" asp-route-projectID="@Model.SelectedProject?.ID"
-                    asp-route-projectName='@Model.SelectedProject?.Name.Replace(" ", "")'
-                    asp-route-taskID="@nestableTask.Task.ID">
-                    <input type="checkbox" checked="@nestableTask.Task.IsCompleted">
-                    <p>
-                        @nestableTask.Task.Name
-                        <small>@(nestableTask.Task.DueTime != null ?
-                             $"({nestableTask.Task.DueTime?.GetDateTimeFormats()[3]})" : "")</small>
-                    </p>
-                    <span>@nestableTask.Task.ImportanceIcon</span>
-                </a>
-            </button>
+            <component type="typeof(ToDoTaskCard)" render-mode="Static" param-nestableTask="nestableTask"
+                param-selectedProject="Model.SelectedProject" />
         }
     </section>
 </section>
@@ -73,20 +46,12 @@
     <section class="slider">
         @if (Model.Steps == null || Model.Steps.Any() == false)
         {
-            <div class="empty-message">
-                <span>🥲</span>
-                <p>There's no <strong>steps</strong> here yet.</p>
-            </div>
+            <component type="typeof(EmptyMessage)" render-mode="Static" param-emptyMessageType="EmptyMessageType.Step" />
         }
 
         @foreach (var step in Model.Steps ?? Array.Empty<ToDoStepDTO>())
         {
-            <button class="step-title-card link-button">
-                <a href="#">
-                    <input type="checkbox" checked="@step.IsCompleted">
-                    <p>@step.Name</p>
-                </a>
-            </button>
+            <component type="typeof(ToDoStepCard)" render-mode="Static" param-step="step" />
         }
     </section>
 </section>

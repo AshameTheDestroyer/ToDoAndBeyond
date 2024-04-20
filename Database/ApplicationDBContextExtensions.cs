@@ -49,6 +49,7 @@ public static class ApplicationDBContextExtensions
                 new ToDoMyDayProject(dbContext).InitialProject,
                 new ToDoAllProject(dbContext).InitialProject,
                 new ToDoCompletedProject(dbContext).InitialProject,
+                new ToDoUncompletedProject(dbContext).InitialProject,
                 new ToDoStarredProject(dbContext).InitialProject,
                 .. ToDoImportanceProjects.InitialProjects,
             ]

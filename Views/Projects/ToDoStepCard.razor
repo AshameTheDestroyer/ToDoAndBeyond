@@ -1,0 +1,13 @@
+@using ToDoAndBeyond.DTOs
+@code
+{
+    [Parameter]
+    public required ToDoStepDTO Step { get; set; }
+}
+
+<button class="step-title-card link-button">
+    <a href="#">
+        <input type="checkbox" checked="@Step.IsCompleted">
+        <p>@Step.Name</p>
+    </a>
+</button>

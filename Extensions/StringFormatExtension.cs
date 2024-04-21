@@ -4,9 +4,8 @@ namespace Extensions;
 
 public static class StringFormatExtensions
 {
-    public static string Format(this string @string, object parameters)
-    {
-        return parameters
+    public static string Format(this string @string, object parameters) =>
+        parameters
             .GetType()
             .GetProperties()
             .Aggregate(
@@ -18,5 +17,4 @@ public static class StringFormatExtensions
                         property.GetValue(parameters)?.ToString() ?? ""
                     )
             );
-    }
 }

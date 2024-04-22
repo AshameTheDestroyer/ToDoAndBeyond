@@ -43,16 +43,25 @@ public class ToDoTaskRepository(ApplicationDBContext dbContext) : IToDoTaskRepos
                 ? Activator.CreateInstance(initialProjectType, dbContext)
                 : null;
 
-        if (instance == null)
-        {
-            return [];
-        }
-
-        return (
+        return instance != null
+            ? (
                 initialProjectType
                     ?.GetMethod(nameof(ITodoInitialProject.GetToDoTasks))
                     ?.Invoke(instance, []) as Task<IEnumerable<ToDoTask>>
-            )?.Result ?? [new ToDoTask() { Name = "aaaaaa", ProjectID = 3 }];
+            )?.Result ?? []
+            : [];
+    }
+
+    public bool UpdateIsCompleted(int id, bool value)
+    {
+        var task = dbContext.Tasks.FirstOrDefault(task => task != null && task.ID == id, null);
+        if (task == null)
+        {
+            throw new ArgumentNullException(nameof(task), $"Task with the id ${id} is not found.");
+        }
+
+        dbContext.Tasks.Update(task with { IsCompleted = value });
+        return Save();
     }
 
     public bool AddToDoTask(ToDoTask task)

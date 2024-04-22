@@ -199,6 +199,11 @@
     .step-title-card {
         @include title-card;
 
+        input:checked+p {
+            text-decoration: line-through;
+            filter: contrast(0%);
+        }
+
         &>a {
             grid-template-columns: var(--input-size) 1fr;
         }

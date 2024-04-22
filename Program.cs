@@ -13,11 +13,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddRazorComponents();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
 builder.Services.AddScoped<IToDoStepRepository, ToDoStepRepository>();
 builder.Services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
 builder.Services.AddScoped<IToDoProjectRepository, ToDoProjectRepository>();
-
 var app = builder.Build();
 
 app.UseRouting();
@@ -26,27 +24,25 @@ app.UseStaticFiles();
 app.UseAuthorization();
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<ApplicationDBContext>();
-    context.Database.EnsureCreated();
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+var context = services.GetRequiredService<ApplicationDBContext>();
+context.Database.EnsureCreated();
 
-    if (args.Length > 0)
+if (args.Length > 0)
+{
+    switch (args[0])
     {
-        switch (args[0])
-        {
-            case "seeding":
-                context.EnsurePopulated();
-                break;
-            case "emptying":
-                context.EnsureEmpty();
-                break;
-            case "resetting":
-                context.EnsureEmpty();
-                context.EnsurePopulated();
-                break;
-        }
+        case "seeding":
+            context.EnsurePopulated();
+            break;
+        case "emptying":
+            context.EnsureEmpty();
+            break;
+        case "resetting":
+            context.EnsureEmpty();
+            context.EnsurePopulated();
+            break;
     }
 }
 

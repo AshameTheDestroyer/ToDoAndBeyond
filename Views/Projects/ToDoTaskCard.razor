@@ -1,5 +1,9 @@
-@using ToDoAndBeyond.Controllers
 @using ToDoAndBeyond.DTOs
+@using ToDoAndBeyond.Interfaces
+@using ToDoAndBeyond.Controllers
+
+@inject IToDoTaskRepository taskRepository
+
 @code
 {
     [Parameter]
@@ -26,6 +30,9 @@
 
     private string GetDate() => NestableTask.Task.DueTime != null ?
         $"({NestableTask.Task.DueTime?.GetDateTimeFormats()[3]})" : "";
+
+    public void UpdateIsCompleted() =>
+        taskRepository.UpdateIsCompleted(NestableTask.Task.ID, !NestableTask.Task.IsCompleted);
 }
 
 <button 
@@ -35,7 +42,7 @@
     style="@GetStyle()"
 >
     <a href="@ProjectsController.GenerateURL(SelectedProject.ID, SelectedProject.Name, NestableTask.Task.ID)">
-        <input type="checkbox" checked="@NestableTask.Task.IsCompleted">
+        <input type="checkbox" checked="@NestableTask.Task.IsCompleted" @onchange="UpdateIsCompleted">
         <p>
             @NestableTask.Task.Name
             <small>@GetDate()</small>

@@ -1,7 +1,9 @@
 @using ToDoAndBeyond.Enums
 @using ToDoAndBeyond.Views.Projects
 @using Microsoft.AspNetCore.Components
+
 @model ProjectsDTO
+
 @{
     ViewData["Title"] = "Projects";
     ViewData["Styling"] = "projects";
@@ -35,7 +37,7 @@
 
         @foreach (var nestableTask in Model.GetNestableToDoTasks() ?? Array.Empty<NestableToDoTaskDTO>())
         {
-            <component type="typeof(ToDoTaskCard)" render-mode="Static" param-nestableTask="nestableTask"
+            <component type="typeof(ToDoTaskCard)" render-mode="WebAssemblyPrerendered" param-nestableTask="nestableTask"
                 param-selectedProject="Model.SelectedProject" />
         }
     </section>

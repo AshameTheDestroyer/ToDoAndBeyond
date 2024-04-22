@@ -37,7 +37,7 @@
     style="@GetStyle()"
 >
     <a href="@ProjectsController.GenerateURL(SelectedProject.ID, SelectedProject.Name, NestableTask.Task.ID)">
-        <input type="checkbox" checked="@NestableTask.Task.IsCompleted" @onchange="UpdateIsCompleted">
+        <input type="checkbox" checked="@NestableTask.Task.IsCompleted">
         <p>
             @NestableTask.Task.Name
             <small>@GetDate()</small>

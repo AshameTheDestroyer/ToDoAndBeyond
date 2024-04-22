@@ -2,8 +2,6 @@
 @using ToDoAndBeyond.Interfaces
 @using ToDoAndBeyond.Controllers
 
-@inject IToDoTaskRepository taskRepository
-
 @code
 {
     [Parameter]
@@ -30,9 +28,6 @@
 
     private string GetDate() => NestableTask.Task.DueTime != null ?
         $"({NestableTask.Task.DueTime?.GetDateTimeFormats()[3]})" : "";
-
-    public void UpdateIsCompleted() =>
-        taskRepository.UpdateIsCompleted(NestableTask.Task.ID, !NestableTask.Task.IsCompleted);
 }
 
 <button 

@@ -14,43 +14,47 @@
     [Parameter]
     public required ToDoProjectDTO SelectedProject { get; set; }
 
-    private string GetStyle()
+    private string style
     {
-        string titleCardColour = NestableTask.Task.Colour != null ? $"--title-card-colour: {NestableTask.Task.Colour};" : "",
-            taskImportanceColour = NestableTask.Task.ImportanceColour != null ? $"--task-importance-colour: {NestableTask.Task.ImportanceColour};" : "",
-            taskNestingLevel = $"--task-nesting-level: {NestableTask.NestingLevel};",
-            TaskGapLevel = $"--task-gap-level: {NestableTask.GapLevel};";
-            
-        return new string[]
+        get
         {
-            titleCardColour,
-            taskImportanceColour,
-            taskNestingLevel,
-            TaskGapLevel,
-        }.Aggregate("", (accumulator, @string) => accumulator + @string);
+            string titleCardColour = NestableTask.Task.Colour != null ? $"--title-card-colour: {NestableTask.Task.Colour};" : "",
+                taskImportanceColour = NestableTask.Task.ImportanceColour != null ? $"--task-importance-colour: {NestableTask.Task.ImportanceColour};" : "",
+                taskNestingLevel = $"--task-nesting-level: {NestableTask.NestingLevel};",
+                TaskGapLevel = $"--task-gap-level: {NestableTask.GapLevel};";
+                
+            return new string[]
+            {
+                titleCardColour,
+                taskImportanceColour,
+                taskNestingLevel,
+                TaskGapLevel,
+            }.Aggregate("", (accumulator, @string) => accumulator + @string);
+        }
     }
 
-    private string GetDate() => NestableTask.Task.DueTime != null ?
+    private string url => 
+        ProjectsController.GenerateURL(SelectedProject.ID, SelectedProject.Name, NestableTask.Task.ID);
+
+    private string date => NestableTask.Task.DueTime != null ?
         $"({NestableTask.Task.DueTime?.GetDateTimeFormats()[3]})" : "";
 
     private void UpdateIsCompleted() =>
         taskRepository.UpdateIsCompleted(NestableTask.Task.ID, !NestableTask.Task.IsCompleted);
-
-    int x = 5;
-    void Increment() => x++;
 }
 
 <button 
     class="task-title-card link-button"
+    
+    style="@style"
     data-is-starred='@(NestableTask.Task.IsStarred ? "⭐" : "")'
     data-is-nested="@((NestableTask.NestingLevel > 0).ToString().ToLower())"
-    style="@GetStyle()"
 >
-    <a href="@ProjectsController.GenerateURL(SelectedProject.ID, SelectedProject.Name, NestableTask.Task.ID)">
+    <a href="@url">
         <input type="checkbox" checked="@NestableTask.Task.IsCompleted" @onclick="UpdateIsCompleted">
         <p>
-            @NestableTask.Task.Name @x
-            <small>@GetDate()</small>
+            @NestableTask.Task.Name
+            <small>@date</small>
         </p>
         <span>@NestableTask.Task.ImportanceIcon</span>
     </a>

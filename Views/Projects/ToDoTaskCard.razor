@@ -2,6 +2,10 @@
 @using ToDoAndBeyond.Interfaces
 @using ToDoAndBeyond.Controllers
 
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+
+@inject IToDoTaskRepository taskRepository
+
 @code
 {
     [Parameter]
@@ -28,6 +32,12 @@
 
     private string GetDate() => NestableTask.Task.DueTime != null ?
         $"({NestableTask.Task.DueTime?.GetDateTimeFormats()[3]})" : "";
+
+    private void UpdateIsCompleted() =>
+        taskRepository.UpdateIsCompleted(NestableTask.Task.ID, !NestableTask.Task.IsCompleted);
+
+    int x = 5;
+    void Increment() => x++;
 }
 
 <button 
@@ -37,9 +47,9 @@
     style="@GetStyle()"
 >
     <a href="@ProjectsController.GenerateURL(SelectedProject.ID, SelectedProject.Name, NestableTask.Task.ID)">
-        <input type="checkbox" checked="@NestableTask.Task.IsCompleted">
+        <input type="checkbox" checked="@NestableTask.Task.IsCompleted" @onclick="UpdateIsCompleted">
         <p>
-            @NestableTask.Task.Name
+            @NestableTask.Task.Name @x
             <small>@GetDate()</small>
         </p>
         <span>@NestableTask.Task.ImportanceIcon</span>

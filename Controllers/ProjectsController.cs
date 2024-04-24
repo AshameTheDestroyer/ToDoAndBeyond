@@ -13,9 +13,9 @@ public class ProjectsController(
     IToDoStepRepository stepRepository
 ) : Controller
 {
-    private const string baseURL = "/Projects";
-    private const string projectURL = baseURL + "/Project{projectID}/{projectName}";
-    private const string taskURL = projectURL + "/Task{taskID}";
+    public const string baseURL = "/Projects";
+    public const string projectURL = baseURL + "/Project{projectID}/{projectName}";
+    public const string taskURL = projectURL + "/Task{taskID}";
 
     private readonly ILogger<ProjectsController> logger = logger;
     private readonly IEnumerable<IEnumerable<ToDoProject>> projectChunks =

@@ -10,12 +10,17 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 );
 
 builder.Services.AddRazorPages();
-builder.Services.AddRazorComponents();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddServerSideBlazor().AddInteractiveServerComponents();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder
+    .Services.AddRazorComponents()
+    .AddInteractiveServerComponents()
+    .AddInteractiveWebAssemblyComponents();
+
 builder.Services.AddScoped<IToDoStepRepository, ToDoStepRepository>();
 builder.Services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
 builder.Services.AddScoped<IToDoProjectRepository, ToDoProjectRepository>();
+
 var app = builder.Build();
 
 app.UseRouting();

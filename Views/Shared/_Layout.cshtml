@@ -7,15 +7,16 @@
 
     <title>@ViewData["Title"] - ToDo & Beyond</title>
 
+    <link rel="shortcut icon" href="~/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="~/CSS/style.css" asp-append-version="true" />
     @if (ViewData["Styling"] != null)
     {
         <link rel="stylesheet" href='~/CSS/@(ViewData["Styling"]).css' asp-append-version="true" />
     }
-    <link rel="shortcut icon" href="~/favicon.svg" type="image/x-icon">
-
+    
+    <base href="~/"/> 
     <script src="~/JS/Main.js" defer></script>
-    <script src="~/_framework/blazor.server.js" defer></script> <!-- FIND THIS FUCKING SCRIPT -->
+    <script src="~/_framework/blazor.server.js" defer></script>
 </head>
 
 <body>

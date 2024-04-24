@@ -37,7 +37,7 @@
 
         @foreach (var nestableTask in Model.GetNestableToDoTasks() ?? Array.Empty<NestableToDoTaskDTO>())
         {
-            <component type="typeof(ToDoTaskCard)" render-mode="WebAssemblyPrerendered" param-nestableTask="nestableTask"
+            <component type="typeof(ToDoTaskCard)" render-mode="Static" param-nestableTask="nestableTask"
                 param-selectedProject="Model.SelectedProject" />
         }
     </section>

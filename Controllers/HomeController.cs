@@ -6,5 +6,5 @@ public class HomeController(ILogger<HomeController> logger) : Controller
 {
     private readonly ILogger<HomeController> logger = logger;
 
-    public IActionResult Index() => View();
+    public IActionResult Index() => Redirect(ProjectsController.baseURL);
 }

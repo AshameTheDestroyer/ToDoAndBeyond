@@ -54,13 +54,14 @@ public class ToDoTaskRepository(ApplicationDBContext dbContext) : IToDoTaskRepos
 
     public bool UpdateIsCompleted(int id, bool value)
     {
-        var task = dbContext.Tasks.FirstOrDefault(task => task != null && task.ID == id, null);
+        var task = dbContext.Tasks.Find(id);
+        // var task = dbContext.Tasks.FirstOrDefault(task => task != null && task.ID == id, null);
         if (task == null)
         {
             throw new ArgumentNullException(nameof(task), $"Task with the id ${id} is not found.");
         }
 
-        dbContext.Tasks.Update(task with { IsCompleted = value });
+        dbContext.Tasks.Entry(task).CurrentValues.SetValues(task with { IsCompleted = value });
         return Save();
     }
 

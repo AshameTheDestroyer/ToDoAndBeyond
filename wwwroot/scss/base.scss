@@ -65,8 +65,8 @@ input:is([type=checkbox], [type=radio]) {
     accent-color: var(--main-colour);
 }
 
-button,
-input:not([type=checkbox]):not([type=radio]) {
+:where(button),
+:where(input:not([type=checkbox]):not([type=radio])) {
     all: unset;
     display: block;
 }
@@ -74,6 +74,14 @@ input:not([type=checkbox]):not([type=radio]) {
 button,
 input:is([type=checkbox], [type=radio], [type=button], [type=submit], [type=reset]) {
     cursor: pointer;
+}
+
+button {
+    transition: filter 250ms;
+
+    &:is(:hover, :focus-within) {
+        filter: brightness(150%);
+    }
 }
 
 ::-webkit-scrollbar {

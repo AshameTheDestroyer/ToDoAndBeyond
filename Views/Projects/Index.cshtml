@@ -10,7 +10,8 @@
 }
 
 <main id="project-displayer" class="displayer">
-    <h1>Projects</h1>
+    <component type="typeof(DisplayerHeader)" render-mode="Static" param-Name='"Project"'
+        param-SearchTerm="Model.SearchTerm" />
     <section class="slider">
         @if (!Model.ProjectChunks.Any(projectChunk => projectChunk.Any()))
         {
@@ -28,7 +29,7 @@
 </main>
 
 <section id="task-displayer" class="displayer">
-    <h1>Tasks</h1>
+    <component type="typeof(DisplayerHeader)" render-mode="Static" param-Name='"Task"' />
     <section class="slider">
         @if (Model.Tasks == null || Model.Tasks.Any() == false)
         {
@@ -44,7 +45,7 @@
 </section>
 
 <section id="step-displayer" class="displayer">
-    <h1>Steps</h1>
+    <component type="typeof(DisplayerHeader)" render-mode="Static" param-Name='"Step"' />
     <section class="slider">
         @if (Model.Steps == null || Model.Steps.Any() == false)
         {

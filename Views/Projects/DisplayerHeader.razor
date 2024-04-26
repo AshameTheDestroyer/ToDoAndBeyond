@@ -1,0 +1,29 @@
+@using ToDoAndBeyond.Controllers
+
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+
+@code
+{
+    [Parameter]
+    public required string Name { get; set; }
+
+    [Parameter]
+    public string? SearchTerm { get; set; }
+
+    private string searchProjectTerm { get; set; } = "";
+}
+
+<header>
+    <h1>
+        @(Name + "s")
+        <small>@(SearchTerm != null ? $"({SearchTerm})" : "")</small>
+        <input class="search-input" type="search" placeholder="My Project" name="term"
+            @onchange='@((e) => searchProjectTerm = e?.Value?.ToString() ?? "")' tabindex="-1" />
+    </h1>
+    <a href="@ProjectsController.GenerateURL(searchProjectTerm)" aria-hidden></a>
+    <button id='@($"{Name.ToLower()}-search-button")' class="search-button" role="search" type="button"
+        onclick="OnSearchButtonClick(this)">
+        🔎
+    </button>
+    <button id='@($"{Name.ToLower()}-add-button")' type="button">➕</button>
+</header>

@@ -6,7 +6,6 @@
     gap: var(--padding);
 
     padding: var(--padding);
-
 }
 
 .displayer {
@@ -21,16 +20,82 @@
     box-shadow: var(--box-shadow);
     background-color: var(--background-lighter-colour);
 
-    &>h1 {
+    &>header {
         --border-thickness: 1px;
-
-        font-size: var(--header-font-size);
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 1rem;
 
         margin-top: var(--inner-padding);
         margin-inline: var(--inner-padding);
         padding-bottom: calc(var(--inner-padding) - var(--border-thickness));
 
         border-bottom: var(--border-thickness) solid var(--fore-lighter-colour);
+
+        &>h1 {
+            font-size: var(--header-font-size);
+
+            display: flex;
+            place-content: center stretch;
+            place-items: center stretch;
+            gap: 1ch;
+
+            position: relative;
+
+            overflow: hidden;
+
+            &>small {
+                color: var(--fore-lighter-colour);
+
+                overflow: hidden;
+                white-space: none;
+                text-overflow: ellipsis;
+            }
+
+            .search-input {
+                font-size: 80%;
+
+                position: absolute;
+                inset: 0;
+                left: 100%;
+
+                border-radius: 5px;
+                background-color: var(--fore-lighter-colour);
+
+                transition: left 500ms, padding 500ms;
+
+                &::placeholder {
+                    color: var(--background-lighter-colour);
+                }
+
+                &::-webkit-search-cancel-button {
+                    display: none;
+                }
+
+                &.active-search-input {
+                    left: 0;
+                    padding-inline: 1rem;
+                }
+            }
+        }
+
+        &>a {
+            display: none;
+        }
+
+        &>button {
+            text-align: center;
+
+            aspect-ratio: 1;
+
+            border-radius: 5px;
+            border: 1px solid transparent;
+            background-color: var(--background-lighter-colour);
+
+            &:is(:hover, :focus-within) {
+                border-color: var(--fore-lighter-colour);
+            }
+        }
     }
 
     .slider {
@@ -124,7 +189,23 @@
         @include title-card;
 
         &[data-is-initial=true]+[data-is-initial=false] {
-            margin-top: var(--padding);
+            --gap: 2rem;
+            position: relative;
+
+            margin-top: var(--gap);
+
+            &::before {
+                --height: 1px;
+
+                content: "";
+
+                position: absolute;
+                inset: 0;
+                height: var(--height);
+                transform: translateY(calc((var(--title-card-gap) + var(--gap) + var(--height)) / -2));
+
+                background-color: var(--fore-lighter-colour);
+            }
         }
 
         &>a {

@@ -16,6 +16,7 @@ public class ProjectsController(
     public const string baseURL = "/Projects";
     public const string projectURL = baseURL + "/Project{projectID}/{projectName}";
     public const string taskURL = projectURL + "/Task{taskID}";
+    public const string searchProjectURL = baseURL + "/Search/{term}";
 
     private readonly ILogger<ProjectsController> logger = logger;
     private readonly IEnumerable<IEnumerable<ToDoProject>> projectChunks =
@@ -24,8 +25,9 @@ public class ProjectsController(
         projectRepository.GetToDoProjects().Result.Where(project => !project.Name.StartsWith('~')),
     ];
 
-    public static string GenerateURL(int projectID, string projectName, int? taskID = null) =>
-        (taskID == null ? projectURL : taskURL).Format(
+    public static string GenerateURL(int projectID, string projectName, int? taskID = null)
+    {
+        return (taskID == null ? projectURL : taskURL).Format(
             new
             {
                 projectID,
@@ -33,10 +35,14 @@ public class ProjectsController(
                 taskID,
             }
         );
+    }
+
+    public static string GenerateURL(string term) => searchProjectURL.Format(new { term });
 
     [HttpGet(baseURL)]
-    public ActionResult Index() =>
-        View(
+    public ActionResult Index()
+    {
+        return View(
             new ProjectsDTO
             {
                 ProjectChunks = projectChunks.Select(projectChunk =>
@@ -44,11 +50,13 @@ public class ProjectsController(
                 )
             }
         );
+    }
 
     [HttpGet(taskURL)]
     [HttpGet(projectURL)]
-    public ActionResult Index(int projectID, string projectName, int? taskID = null) =>
-        View(
+    public ActionResult Index(int projectID, string projectName, int? taskID = null)
+    {
+        return View(
             new ProjectsDTO
             {
                 SelectedTask =
@@ -70,4 +78,24 @@ public class ProjectsController(
                         : null,
             }
         );
+    }
+
+    public ActionResult Search() => RedirectToAction(nameof(Index));
+
+    [HttpGet(searchProjectURL)]
+    public ActionResult Search(string term)
+    {
+        return View(
+            "Index",
+            new ProjectsDTO
+            {
+                SearchTerm = term,
+                ProjectChunks = projectChunks.Select(projectChunk =>
+                    projectChunk
+                        .Where(project => project.Name.ToLower().Contains(term.Trim().ToLower()))
+                        .Select(project => project.MapToDTO())
+                ),
+            }
+        );
+    }
 }

@@ -7,6 +7,7 @@ public record ProjectsDTO
     public required IEnumerable<IEnumerable<ToDoProjectDTO>> ProjectChunks { get; set; }
     public IEnumerable<ToDoTaskDTO>? Tasks { get; set; }
     public IEnumerable<ToDoStepDTO>? Steps { get; set; }
+    public string? SearchTerm { get; set; }
 }
 
 public record NestableToDoTaskDTO(ToDoTaskDTO Task, int NestingLevel, int GapLevel);

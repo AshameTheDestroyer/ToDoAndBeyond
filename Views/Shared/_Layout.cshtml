@@ -8,14 +8,14 @@
     <title>@ViewData["Title"] - ToDo & Beyond</title>
 
     <link rel="shortcut icon" href="~/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="~/CSS/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     @if (ViewData["Styling"] != null)
     {
-        <link rel="stylesheet" href='~/CSS/@(ViewData["Styling"]).css' asp-append-version="true" />
+        <link rel="stylesheet" href='~/css/@(ViewData["Styling"]).css' asp-append-version="true" />
     }
 
     <base href="~/" />
-    <script src="~/JS/main.js" defer></script>
+    <script src="~/js/main.js" defer></script>
     <script src="~/_framework/blazor.server.js" defer></script>
 </head>
 
